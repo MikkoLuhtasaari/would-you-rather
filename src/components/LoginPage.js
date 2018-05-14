@@ -1,15 +1,17 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import User from "./User"
+import index from "../index.css"
 
 class LoginPage extends Component {
     render() {
         return (
-            <div>
-                <h3>Please login</h3>
+            <div className="col-xs-1" align="center">
+                <h1>Please login</h1>
                 <ul>
                     {this.props.userIds.map((id) => (
-                        <li key={id}>
+                        <li className="no-bullets"
+                            key={id}>
                             <div>
                                 <User id={id} />
                             </div>

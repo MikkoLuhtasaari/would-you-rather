@@ -8,13 +8,12 @@ class User extends Component {
     handleLogin = (e, id) => {
         e.preventDefault();
 
-        const {dispatch} = this.props;
-        console.log(id);
-
+        const {dispatch, users} = this.props;
+        console.log("User props", this.props);
         dispatch(setAuthedUser({
             id
         }));
-        this.props.history.push("/questions")
+        this.props.history.push(`/questions/${id}`)
     };
 
     render() {
@@ -22,7 +21,7 @@ class User extends Component {
 
         const {name, avatarURL, id} = user;
         return (
-            <div>
+            <div className="col-xs-1" align="center">
                 <img src={avatarURL}
                      alt={`Avatar of ${name}`}
                      className="avatar"
@@ -34,11 +33,12 @@ class User extends Component {
     }
 }
 
-function mapStateToProps({authedUser, users}, {id}) {
+function mapStateToProps({users, questions}, {id}) {
     const user = users[id];
     return {
-        authedUser,
-        user
+        user,
+        users,
+        questions
     }
 }
 
