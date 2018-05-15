@@ -12,16 +12,16 @@ class Question extends Component {
 
     handleStuff = (e, question, authedUser) => {
       e.preventDefault();
-      console.log(e, question);
+      console.log(question, authedUser);
     };
+
+    vote = itemProps => <Button onClick={(e) => this.handleStuff(e, this.props.question, this.props.authedUser)} {...itemProps} />;
 
     render() {
         const {question, authedUser} = this.props;
-        {/* const Vote = props => <Button onClick={(e) => this.handleLogin(e, question, authedUser)} {...props} />; */}
-        console.log(question);
         return (
             <div>
-                <Grid container alignContent="center" spacing="8">
+                <Grid container alignContent="center" spacing={8}>
                     <Grid item xs={6}>
                         <Card raised={true}>
                             <CardContent>
@@ -33,7 +33,7 @@ class Question extends Component {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button variant="raised" color="primary" fullWidth={true}>Vote</Button>
+                                <Button component={this.vote} variant="raised" color="primary" fullWidth={true}>Vote</Button>
                             </CardActions>
                         </Card>
                     </Grid>
@@ -48,7 +48,7 @@ class Question extends Component {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button variant="raised" color="secondary" fullWidth={true}>Vote</Button>
+                                <Button component={this.vote} variant="raised" color="secondary" fullWidth={true}>Vote</Button>
                             </CardActions>
                         </Card>
                     </Grid>
