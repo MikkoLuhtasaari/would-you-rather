@@ -6,6 +6,7 @@ import reducer from "./reducers/index.js"
 import middleware from "./middleware"
 import App from './components/App';
 import './index.css'
+import 'typeface-roboto'
 
 const store = createStore(reducer, middleware);
 

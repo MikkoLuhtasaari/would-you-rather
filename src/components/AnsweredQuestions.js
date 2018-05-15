@@ -1,31 +1,39 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import {Link, withRouter} from "react-router-dom"
+import Question from "./Question"
     
 class AnsweredQuestions extends Component {
     render(){
         const {questions, authedUser} = this.props;
 
-        let answered1 = [];
-        let answered2 = [];
+        let answered = [];
         for (let key in questions) {
             for(let i = 0; i < questions[key].optionOne["votes"].length; i++) {
                 if(questions[key].optionOne["votes"][i].toString().toLowerCase() === authedUser["id"].toString().toLowerCase()) {
-                    console.log("Found correct");
-                    answered1 = answered1.concat(questions[key].optionOne)
+                    answered = answered.concat(questions[key])
                 }
             }
             for(let i = 0; i < questions[key].optionTwo["votes"].length; i++) {
                 if(questions[key].optionTwo["votes"][i].toString().toLowerCase() === authedUser["id"].toString().toLowerCase()) {
-                    console.log("Found correct");
-                    answered2 = answered2.concat(questions[key].optionTwo)
+                    answered = answered.concat(questions[key])
                 }
             }
         }
-        console.log(answered1, answered2);
+        answered.sort((a, b) => b.timestamp - a.timestamp);
+        console.log(answered);
         return (
             <div className="col-xs-1" align="center">
                 <h2>AnsweredQuestions</h2>
+                <ul className="no-bullets">
+                {answered.map((question) => (
+                    <li key ={question["id"]}>
+                        <div>
+                            <Question id={question["id"]} />
+                        </div>
+                    </li>
+                ))}
+                </ul>
             </div>
         )
     }
