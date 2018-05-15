@@ -14,6 +14,7 @@ class UnansweredQuestions extends Component {
     navigate = itemProps => <Button
         onClick={(e) => this.navigateToAnswered(e, this.props.id)} {...itemProps} />;
 
+    //    TODO get unanswered questions and remove to pass isAnswered when rendering questions
     render() {
         const {id, users} = this.props;
         const user = users[id];
