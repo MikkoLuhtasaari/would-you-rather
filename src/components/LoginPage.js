@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import User from "./User"
-import index from "../index.css"
 
 class LoginPage extends Component {
     render() {
