@@ -5,7 +5,7 @@ import User from "./User"
 class LoginPage extends Component {
     render() {
         return (
-            <div className="col-xs-1" align="center">
+            <div align="center">
                 <h1>Please login</h1>
                 <ul>
                     {this.props.userIds.map((id) => (

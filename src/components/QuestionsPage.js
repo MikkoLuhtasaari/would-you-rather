@@ -14,7 +14,7 @@ class QuestionsPage extends Component {
                 ? null
                 :
                     <div>
-                        <h1> Welcome back {user.name} !</h1>
+                        <h1> Welcome back !</h1>
                         <User id={id}/>
                             { /*console.log(this.props.questions["8xf0y6ziyjabvozdd253nd"].optionOne) */}
                         <AnsweredQuestions />

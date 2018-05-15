@@ -29,7 +29,7 @@ class AnsweredQuestions extends Component {
                 {answered.map((question) => (
                     <li key ={question["id"]}>
                         <div>
-                            <Question id={question["id"]} />
+                            <Question id={question["id"]} isAnswered={true} />
                         </div>
                     </li>
                 ))}

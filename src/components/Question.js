@@ -11,14 +11,15 @@ import Grid from '@material-ui/core/Grid';
 class Question extends Component {
 
     handleStuff = (e, question, authedUser) => {
-      e.preventDefault();
-      console.log(question, authedUser);
+        e.preventDefault();
+        console.log(question, authedUser);
     };
 
-    vote = itemProps => <Button onClick={(e) => this.handleStuff(e, this.props.question, this.props.authedUser)} {...itemProps} />;
+    vote = itemProps => <Button
+        onClick={(e) => this.handleStuff(e, this.props.question, this.props.authedUser)} {...itemProps} />;
 
     render() {
-        const {question, authedUser} = this.props;
+        const {question, authedUser, isAnswered} = this.props;
         return (
             <div>
                 <Grid container alignContent="center" spacing={8}>
@@ -33,7 +34,11 @@ class Question extends Component {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button component={this.vote} variant="raised" color="primary" fullWidth={true}>Vote</Button>
+                                {isAnswered ? (
+                                    <Button disabled variant="raised" color="primary" fullWidth={true}>Vote</Button>
+                                ) : (<Button component={this.vote} variant="raised" color="primary"
+                                             fullWidth={true}>Vote</Button>
+                                )}
                             </CardActions>
                         </Card>
                     </Grid>
@@ -48,7 +53,11 @@ class Question extends Component {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button component={this.vote} variant="raised" color="secondary" fullWidth={true}>Vote</Button>
+                                {isAnswered ? (
+                                    <Button disabled variant="raised" color="secondary" fullWidth={true}>Vote</Button>
+                                ) : (<Button component={this.vote} variant="raised" color="secondary"
+                                             fullWidth={true}>Vote</Button>
+                                )}
                             </CardActions>
                         </Card>
                     </Grid>
@@ -58,11 +67,12 @@ class Question extends Component {
     }
 }
 
-function mapStateToProps({questions, authedUser}, id) {
-    const question = questions[id["id"]];
+function mapStateToProps({questions, authedUser}, {id, isAnswered}) {
+    const question = questions[id];
     return {
         question,
-        authedUser
+        authedUser,
+        isAnswered
     }
 }
 

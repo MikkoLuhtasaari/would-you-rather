@@ -21,7 +21,7 @@ class User extends Component {
 
         const {name, avatarURL, id} = user;
         return (
-            <div className="col-xs-1" align="center">
+            <div align="center">
                 <img src={avatarURL}
                      alt={`Avatar of ${name}`}
                      className="avatar"
