@@ -4,7 +4,8 @@ import {connect} from "react-redux"
 import LoadingBar from "react-redux-loading"
 import {handleInitialData} from "../actions/shared";
 import LoginPage from "./LoginPage"
-import QuestionsPage from "./QuestionsPage";
+import UnansweredQuestions from "./UnansweredQuestions";
+import AnsweredQuestions from "./AnsweredQuestions";
 
 class App extends Component {
     componentDidMount() {
@@ -21,7 +22,8 @@ class App extends Component {
                             ? null
                             : <div>
                                 <Route path="/" exact component={LoginPage} />
-                                <Route path="/questions/:id" component={QuestionsPage}/>
+                                <Route path="/answeredquestions/:id" component={AnsweredQuestions}/>
+                                <Route path="/unansweredquestions/:id" component={UnansweredQuestions}/>
                              </div>
                         }
                     </div>

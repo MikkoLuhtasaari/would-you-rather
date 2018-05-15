@@ -2,23 +2,33 @@ import React, {Component} from "react"
 import {connect} from "react-redux"
 import {Link, withRouter} from "react-router-dom"
 import User from "./User"
-import AnsweredQuestions from "./AnsweredQuestions"
+import Button from '@material-ui/core/Button';
 
-class QuestionsPage extends Component {
+class UnansweredQuestions extends Component {
+
+    navigateToAnswered = (e, id) => {
+        e.preventDefault();
+        this.props.history.push(`/answeredquestions/${id}`)
+    };
+
+    navigate = itemProps => <Button
+        onClick={(e) => this.navigateToAnswered(e, this.props.id)} {...itemProps} />;
+
     render() {
         const {id, users} = this.props;
         const user = users[id];
         return (
-            <div className="col-xs-1" align="center">
+            <div align="center">
                 {user === undefined
-                ? null
-                :
+                    ? null
+                    :
                     <div>
                         <h1> Welcome back !</h1>
                         <User id={id}/>
-                            { /*console.log(this.props.questions["8xf0y6ziyjabvozdd253nd"].optionOne) */}
-                        <AnsweredQuestions />
-                </div> }
+                        <div><Button component={this.navigate} variant="raised">To Answered</Button>
+
+                        </div>
+                    </div>}
             </div>
         )
     }
@@ -36,4 +46,4 @@ function mapStateToProps({users, authedUser, questions}, props) {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(QuestionsPage))
+export default withRouter(connect(mapStateToProps)(UnansweredQuestions))

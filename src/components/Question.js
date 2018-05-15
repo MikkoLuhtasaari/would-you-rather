@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 
 class Question extends Component {
 
+    //TODO functionality plus rename
     handleStuff = (e, question, authedUser) => {
         e.preventDefault();
         console.log(question, authedUser);

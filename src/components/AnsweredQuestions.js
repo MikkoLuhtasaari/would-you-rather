@@ -23,7 +23,7 @@ class AnsweredQuestions extends Component {
         answered.sort((a, b) => b.timestamp - a.timestamp);
         console.log(answered);
         return (
-            <div className="col-xs-1" align="center">
+            <div style={{paddingTop: 2 + "em"}} align="center">
                 <h2>AnsweredQuestions</h2>
                 <ul className="no-bullets">
                 {answered.map((question) => (
