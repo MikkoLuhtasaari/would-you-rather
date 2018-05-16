@@ -36,7 +36,7 @@ export function handleSaveQuestion({optionOneText, optionTwoText}) {
         console.log(optionOneText, optionTwoText);
 
         return _saveQuestion({
-            author: authedUser["id"],
+            author: authedUser,
             optionOneText,
             optionTwoText
         }).then((question) => dispatch(saveQuestion(question)))

@@ -22,12 +22,12 @@ class AnsweredQuestions extends Component {
         let answered = [];
         for (let key in questions) {
             for (let i = 0; i < questions[key].optionOne["votes"].length; i++) {
-                if (questions[key].optionOne["votes"][i].toString().toLowerCase() === authedUser["id"].toString().toLowerCase()) {
+                if (questions[key].optionOne["votes"][i].toString().toLowerCase() === authedUser.toString().toLowerCase()) {
                     answered = answered.concat(questions[key])
                 }
             }
             for (let i = 0; i < questions[key].optionTwo["votes"].length; i++) {
-                if (questions[key].optionTwo["votes"][i].toString().toLowerCase() === authedUser["id"].toString().toLowerCase()) {
+                if (questions[key].optionTwo["votes"][i].toString().toLowerCase() === authedUser.toString().toLowerCase()) {
                     answered = answered.concat(questions[key])
                 }
             }

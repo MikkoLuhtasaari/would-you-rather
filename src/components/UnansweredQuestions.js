@@ -23,12 +23,12 @@ class UnansweredQuestions extends Component {
         for (let key in questions) {
             let isAnswered = false;
             for (let i = 0; i < questions[key].optionOne["votes"].length; i++) {
-                if (questions[key].optionOne["votes"][i].toString().toLowerCase() === authedUser["id"].toString().toLowerCase()) {
+                if (questions[key].optionOne["votes"][i].toString().toLowerCase() === authedUser.toString().toLowerCase()) {
                     isAnswered = true;
                 }
             }
             for (let i = 0; i < questions[key].optionTwo["votes"].length; i++) {
-                if (questions[key].optionTwo["votes"][i].toString().toLowerCase() === authedUser["id"].toString().toLowerCase()) {
+                if (questions[key].optionTwo["votes"][i].toString().toLowerCase() === authedUser.toString().toLowerCase()) {
                     isAnswered = true;
                 }
             }

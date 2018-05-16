@@ -14,12 +14,10 @@ class Question extends Component {
     registerVote = (e, question, authedUser, answer) => {
         const {dispatch} = this.props;
         e.preventDefault();
-        console.log(question.id, authedUser.id, question[answer]);
-        // dispatch(handleSaveQuestionAnswer({
-        //     authedUser.id,
-        //     question.id,
-        //     answer
-        // }));
+        dispatch(handleSaveQuestionAnswer({
+            qid: question.id,
+            answer
+        }));
     };
 
     vote1 = itemProps => <Button

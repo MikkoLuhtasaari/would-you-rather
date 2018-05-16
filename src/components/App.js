@@ -25,8 +25,7 @@ class App extends Component {
                             ? null
                             : <div>
                                 <Route path="/" exact component={LoginPage}/>
-                                {/* TODO figure out a proper logic */}
-                                {this.props.authedUser === "" && !this.props.authedUser.id
+                                {this.props.authedUser === ""
                                     ? null
                                     : <Nav/>
                                 }
@@ -42,9 +41,10 @@ class App extends Component {
     }
 }
 
-function mapStateToProps({users}) {
+function mapStateToProps({users, authedUser}) {
     return {
-        loading: users === {}
+        loading: users === {},
+        authedUser
     }
 }
 

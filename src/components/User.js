@@ -9,10 +9,9 @@ class User extends Component {
         e.preventDefault();
 
         const {dispatch, users} = this.props;
-        console.log("User props", this.props);
-        dispatch(setAuthedUser({
+        dispatch(setAuthedUser(
             id
-        }));
+        ));
         this.props.history.push(`/unansweredquestions/${id}`)
     };
 

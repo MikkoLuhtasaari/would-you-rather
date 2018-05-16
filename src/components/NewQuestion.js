@@ -3,7 +3,6 @@ import {connect} from "react-redux"
 import {Redirect} from "react-router-dom"
 import {handleSaveQuestion} from "../actions/questions"
 
-
 class NewQuestion extends Component {
 
     state = {
@@ -47,7 +46,7 @@ class NewQuestion extends Component {
 
         if(toHome === true) {
             console.log("Redirect");
-            return <Redirect to={"/unansweredquestions/"+authedUser.id}/>
+            return <Redirect to={"/unansweredquestions/"+authedUser}/>
         }
 
         return (
