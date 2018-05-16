@@ -28,17 +28,17 @@ function saveQuestion(question) {
     }
 }
 
-export function handleSaveQuestion({optionOne, optionTwo}) {
+export function handleSaveQuestion({optionOneText, optionTwoText}) {
     return (dispatch, getState) => {
         const {authedUser} = getState();
 
         dispatch(showLoading());
-        console.log(optionOne, optionTwo);
+        console.log(optionOneText, optionTwoText);
 
         return _saveQuestion({
             author: authedUser["id"],
-            optionOne,
-            optionTwo
+            optionOneText,
+            optionTwoText
         }).then((question) => dispatch(saveQuestion(question)))
             .then(() => dispatch(hideLoading()))
     }

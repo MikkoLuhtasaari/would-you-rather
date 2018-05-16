@@ -7,44 +7,43 @@ import {handleSaveQuestion} from "../actions/questions"
 class NewQuestion extends Component {
 
     state = {
-        optionOneText: "",
-        optionTwoText: "",
+        optionOne: "",
+        optionTwo: "",
         toHome: false
     };
 
     handleChange1 = (e) => {
         const text = e.target.value;
         this.setState(() => ({
-            optionOneText: text
+            optionOne: text
         }))
     };
     handleChange2 = (e) => {
         const text = e.target.value;
         this.setState(() => ({
-            optionTwoText: text
+            optionTwo: text
         }))
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        const {optionOneText, optionTwoText} = this.state;
-        console.log(optionOneText, optionTwoText);
+        const {optionOne, optionTwo} = this.state;
+        console.log(optionOne, optionTwo);
         const {dispatch} = this.props;
-        new Object({optionOneText, optionTwoText});
 
-        dispatch(handleSaveQuestion(new Object({optionOneText, optionTwoText})));
+        dispatch(handleSaveQuestion({optionOneText: optionOne, optionTwoText: optionTwo}));
 
         this.setState(() => ({
-            optionOneText: "",
-            optionTwoText: "",
+            optionOne: "",
+            optionTwo: "",
             toHome: true
         }))
     };
 
     render(){
         const {authedUser} = this.props;
-        const {optionOneText, optionTwoText, toHome} = this.state;
+        const {optionOne, optionTwo, toHome} = this.state;
 
         if(toHome === true) {
             console.log("Redirect");
@@ -57,21 +56,21 @@ class NewQuestion extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <textarea
                         placeholder="Answer 1"
-                        value={optionOneText}
+                        value={optionOne}
                         className="textarea"
                         maxLength="200"
                         onChange={this.handleChange1}
                         />
                     <textarea
                         placeholder="Answer 2"
-                        value={optionTwoText}
+                        value={optionTwo}
                         className="textarea"
                         maxLength="200"
                         onChange={this.handleChange2}
                     />
                     <button
                         type="submit"
-                        disabled={optionOneText === "" && optionTwoText === ""}>
+                        disabled={optionOne === "" && optionTwo === ""}>
                         Submit</button>
                 </form>
             </div>
