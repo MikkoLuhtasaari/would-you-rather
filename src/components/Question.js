@@ -7,20 +7,30 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import {handleSaveQuestionAnswer} from "../actions/questions";
 
 class Question extends Component {
 
     //TODO functionality plus rename
-    handleStuff = (e, question, authedUser) => {
+    registerVote = (e, question, authedUser, answer) => {
+        const {dispatch} = this.props;
         e.preventDefault();
-        console.log(question, authedUser);
+        console.log(question.id, authedUser.id, question[answer]);
+        // dispatch(handleSaveQuestionAnswer({
+        //     authedUser.id,
+        //     question.id,
+        //     answer
+        // }));
     };
 
-    vote = itemProps => <Button
-        onClick={(e) => this.handleStuff(e, this.props.question, this.props.authedUser)} {...itemProps} />;
+    vote1 = itemProps => <Button
+        onClick={(e) => this.registerVote(e, this.props.question, this.props.authedUser, "optionOne")} {...itemProps} />;
+
+    vote2 = itemProps => <Button
+        onClick={(e) => this.registerVote(e, this.props.question, this.props.authedUser, "optionTwo")} {...itemProps} />;
 
     render() {
-        const {question, authedUser, isAnswered} = this.props;
+        const {question, authedUser, isAnswered, dispatch} = this.props;
         return (
             <div>
                 <Grid container alignContent="center" spacing={8}>
@@ -37,7 +47,7 @@ class Question extends Component {
                             <CardActions>
                                 {isAnswered ? (
                                     <Button disabled variant="raised" color="primary" fullWidth={true}>Vote</Button>
-                                ) : (<Button component={this.vote} variant="raised" color="primary"
+                                ) : (<Button component={this.vote1} variant="raised" color="primary"
                                              fullWidth={true}>Vote</Button>
                                 )}
                             </CardActions>
@@ -56,7 +66,7 @@ class Question extends Component {
                             <CardActions>
                                 {isAnswered ? (
                                     <Button disabled variant="raised" color="secondary" fullWidth={true}>Vote</Button>
-                                ) : (<Button component={this.vote} variant="raised" color="secondary"
+                                ) : (<Button component={this.vote2} variant="raised" color="secondary"
                                              fullWidth={true}>Vote</Button>
                                 )}
                             </CardActions>
