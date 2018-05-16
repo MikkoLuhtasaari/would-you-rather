@@ -11,7 +11,6 @@ import {handleSaveQuestionAnswer} from "../actions/questions";
 
 class Question extends Component {
 
-    //TODO functionality plus rename
     registerVote = (e, question, authedUser, answer) => {
         const {dispatch} = this.props;
         e.preventDefault();
