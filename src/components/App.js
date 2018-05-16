@@ -6,6 +6,8 @@ import {handleInitialData} from "../actions/shared";
 import LoginPage from "./LoginPage"
 import UnansweredQuestions from "./UnansweredQuestions";
 import AnsweredQuestions from "./AnsweredQuestions";
+import Nav from "./Nav"
+import NewQuestion from "./NewQuestion"
 
 class App extends Component {
     componentDidMount() {
@@ -21,10 +23,16 @@ class App extends Component {
                         {this.props.users === null
                             ? null
                             : <div>
-                                <Route path="/" exact component={LoginPage} />
+                                <Route path="/" exact component={LoginPage}/>
+                                {/* TODO figure out a proper logic */}
+                                {this.props.authedUser === "" && !this.props.authedUser.id
+                                    ? null
+                                    : <Nav/>
+                                }
                                 <Route path="/answeredquestions/:id" component={AnsweredQuestions}/>
                                 <Route path="/unansweredquestions/:id" component={UnansweredQuestions}/>
-                             </div>
+                                <Route path="/new" component={NewQuestion}/>
+                            </div>
                         }
                     </div>
                 </Fragment>
