@@ -14,6 +14,7 @@ class App extends Component {
         this.props.dispatch(handleInitialData())
     }
 
+    //TODO add protected router from blog post
     render() {
         return (
             <Router>
