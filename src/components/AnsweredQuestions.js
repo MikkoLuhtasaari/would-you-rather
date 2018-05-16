@@ -41,7 +41,7 @@ class AnsweredQuestions extends Component {
                     : <div>
                         <h1> Welcome back !</h1>
                         <User id={id}/>
-                        <Button component={this.navigate} variant="raised">To Unanswered</Button>
+                        <Button component={this.navigate} color="primary" variant="raised">To Unanswered</Button>
                         <h2>AnsweredQuestions</h2>
                         <ul className="no-bullets">
                             {answered.map((question) => (

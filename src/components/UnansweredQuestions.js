@@ -26,7 +26,7 @@ class UnansweredQuestions extends Component {
                     <div>
                         <h1> Welcome back !</h1>
                         <User id={id}/>
-                        <div><Button component={this.navigate} variant="raised">To Answered</Button>
+                        <div><Button component={this.navigate} color="secondary" variant="raised">To Answered</Button>
 
                         </div>
                     </div>}
