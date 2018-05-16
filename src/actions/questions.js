@@ -33,9 +33,10 @@ export function handleSaveQuestion({optionOne, optionTwo}) {
         const {authedUser} = getState();
 
         dispatch(showLoading());
+        console.log(optionOne, optionTwo);
 
         return _saveQuestion({
-            author: authedUser,
+            author: authedUser["id"],
             optionOne,
             optionTwo
         }).then((question) => dispatch(saveQuestion(question)))
