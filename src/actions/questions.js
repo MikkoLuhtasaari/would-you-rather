@@ -28,29 +28,30 @@ function saveQuestion(question) {
     }
 }
 
-export function handleSaveQuestion({text}) {
+export function handleSaveQuestion({optionOne, optionTwo}) {
     return (dispatch, getState) => {
         const {authedUser} = getState();
 
         dispatch(showLoading());
 
         return _saveQuestion({
-            text,
-            author: authedUser
+            author: authedUser,
+            optionOne,
+            optionTwo
         }).then((question) => dispatch(saveQuestion(question)))
             .then(() => dispatch(hideLoading()))
     }
 }
 
-export function handleSaveQuestionAnswer(info) {
-    return (dispatch) => {
-        dispatch(saveQuestionAnswer(info));
+export function handleSaveQuestionAnswer(qid, answer) {
+    return (dispatch, getState) => {
+        const {authedUser} = getState();
+        dispatch(showLoading());
 
-        return _saveQuestionAnswer(info)
-            .catch((e) => {
-                console.warn("Error in handleSaveQuestion", e);
-                dispatch(saveQuestionAnswer(info));
-                alert("Error saving answer");
-            })
+        return _saveQuestionAnswer({
+            authedUser,
+            qid,
+            answer
+        }).then(() => dispatch(hideLoading()))
     }
 }
