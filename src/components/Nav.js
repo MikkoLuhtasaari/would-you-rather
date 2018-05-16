@@ -7,7 +7,7 @@ class Nav extends Component {
             <nav className="nav">
                 <ul className="no-bullets">
                     <li>
-                        <NavLink to="new">
+                        <NavLink to="/new">
                             New Question
                         </NavLink>
                     </li>
