@@ -20,11 +20,20 @@ class Question extends Component {
         }));
     };
 
+    navigateToDetails = (e, qid) => {
+        e.preventDefault();
+        this.props.history.push(`/questions/${qid}`)
+    };
+
     vote1 = itemProps => <Button
         onClick={(e) => this.registerVote(e, this.props.question, this.props.authedUser, "optionOne")} {...itemProps} />;
 
     vote2 = itemProps => <Button
         onClick={(e) => this.registerVote(e, this.props.question, this.props.authedUser, "optionTwo")} {...itemProps} />;
+
+
+    detailsButton = itemProps => <Button
+        onClick={(e) => this.navigateToDetails(e, this.props.question.id)} {...itemProps} />;
 
     render() {
         const {question, isAnswered} = this.props;
@@ -33,7 +42,8 @@ class Question extends Component {
                 <Grid container alignContent="center" spacing={8}>
                     <Grid item xs={6}>
                         <Card raised={true}>
-                            <CardContent>
+                            {/* TODO try to fix styling back to intented */}
+                            <CardContent component={this.detailsButton}>
                                 <Typography variant="headline" component="h2">
                                     {question.optionOne.text}
                                 </Typography>
@@ -52,7 +62,7 @@ class Question extends Component {
                     </Grid>
                     <Grid item xs={6}>
                         <Card raised={true}>
-                            <CardContent>
+                            <CardContent component={this.detailsButton}>
                                 <Typography variant="headline" component="h2">
                                     {question.optionTwo.text}
                                 </Typography>
