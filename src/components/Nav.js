@@ -19,7 +19,7 @@ class Nav extends Component {
                         <NavLink to="/add">
                             New Question
                         </NavLink>
-                        <NavLink to="leaderboard">
+                        <NavLink to="/leaderboard">
                             Leaderboard
                         </NavLink>
                         <NavLink to="/logout">

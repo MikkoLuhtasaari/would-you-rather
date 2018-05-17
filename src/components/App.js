@@ -10,8 +10,9 @@ import Nav from "./Nav"
 import NewQuestion from "./NewQuestion"
 import Page404 from "./Page404"
 import Logout from "./Logout"
+import Leaderboard from "./Leaderboard";
 
-// TODO Question details page, voting, leaderboard, logout
+// TODO Question details page, voting, leaderboard
 const PrivateRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={(props) => (
          props && props.authedUser !== ""
@@ -43,6 +44,7 @@ class App extends Component {
                                     <PrivateRoute path="/answeredquestions/:id" component={AnsweredQuestions}/>
                                     <PrivateRoute path="/unansweredquestions/:id" component={UnansweredQuestions}/>
                                     <PrivateRoute path="/add" component={NewQuestion}/>
+                                    <PrivateRoute path="/leaderboard" component={Leaderboard} />
                                     {this.props.authedUser === ""
                                         ? null
                                         : <PrivateRoute component ={Page404}/>
