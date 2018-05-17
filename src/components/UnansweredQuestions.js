@@ -7,17 +7,17 @@ import Button from '@material-ui/core/Button';
 
 class UnansweredQuestions extends Component {
 
-    navigateToAnswered = (e, id) => {
+    navigateToAnswered = (e, authedUser) => {
         e.preventDefault();
-        this.props.history.push(`/answeredquestions/${id}`)
+        this.props.history.push(`/answeredquestions/${authedUser}`)
     };
 
     navigate = itemProps => <Button
-        onClick={(e) => this.navigateToAnswered(e, this.props.id)} {...itemProps} />;
+        onClick={(e) => this.navigateToAnswered(e, this.props.authedUser)} {...itemProps} />;
 
     render() {
-        const {id, users, authedUser, questions} = this.props;
-        const user = users[id];
+        const {users, authedUser, questions} = this.props;
+        const user = users[authedUser];
 
         let unanswered = [];
         for (let key in questions) {
@@ -48,7 +48,7 @@ class UnansweredQuestions extends Component {
                     :
                     <div>
                         <h1> Welcome back !</h1>
-                        <User id={id}/>
+                        <User id={authedUser}/>
                         <div><Button component={this.navigate} color="secondary" variant="raised">To Answered</Button>
                             <h2>UnansweredQuestions</h2>
                             <ul className="no-bullets">
@@ -68,11 +68,7 @@ class UnansweredQuestions extends Component {
 }
 
 function mapStateToProps({users, authedUser, questions}, props) {
-    const {id} = props.match.params;
-    const {user} = users[id];
     return {
-        id,
-        user,
         authedUser,
         questions,
         users
