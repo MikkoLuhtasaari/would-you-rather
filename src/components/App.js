@@ -12,6 +12,7 @@ import Page404 from "./Page404"
 import Logout from "./Logout"
 import Leaderboard from "./Leaderboard";
 import QuestionDetails from "./QuestionDetails";
+import MenuNav from "./MenuNav";
 
 // TODO Question details page, voting
 const PrivateRoute = ({component: Component, ...rest}) => (
@@ -39,7 +40,7 @@ class App extends Component {
                                 <Route path="/" exact component={LoginPage}/>
                                 {this.props.authedUser === ""
                                     ? null
-                                    : <Nav/>
+                                    : <MenuNav/>
                                 }
                                 <Switch>
                                     <PrivateRoute path="/answeredquestions" component={AnsweredQuestions}/>
