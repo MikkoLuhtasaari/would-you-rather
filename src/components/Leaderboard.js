@@ -5,15 +5,27 @@ import User from "./User"
 import LeaderBoardCardItem from "./LeaderboardCardItem"
 
 class Leaderboard extends Component {
+
+    gatherUserAnswers = (usersWithAnswers) => {
+        for(let key in this.props.users) {
+            usersWithAnswers.push({user: this.props.users[key], answerAmount: this.props.users[key].questions.length + Object.keys(this.props.users[key].answers).length})
+        }
+    };
+
     render(){
-        const {authedUser, users} = this.props;
-        console.log(users[authedUser]);
+        const {authedUser} = this.props;
+        let usersWithAnswers = [];
+        this.gatherUserAnswers(usersWithAnswers);
+        usersWithAnswers.sort((a, b) => b.answerAmount - a.answerAmount);
         return (
             <div>
                 <h1> Welcome back !</h1>
                 <User id={authedUser}/>
                 <h1>Leaderboard</h1>
-                <LeaderBoardCardItem user={users[authedUser]}/>
+                {usersWithAnswers.map((user) => (
+                    <LeaderBoardCardItem key={user.user.id} user={user.user}/>
+                    ))}
+
             </div>
         )
     }
