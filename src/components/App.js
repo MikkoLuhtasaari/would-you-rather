@@ -9,9 +9,9 @@ import AnsweredQuestions from "./AnsweredQuestions";
 import Nav from "./Nav"
 import NewQuestion from "./NewQuestion"
 import Page404 from "./Page404"
+import Logout from "./Logout"
 
-// TODO Question details page (remember 404 (Wrap routes inside Switch), voting, leaderboard, logout
-// Get user ID from state
+// TODO Question details page, voting, leaderboard, logout
 const PrivateRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={(props) => (
          props && props.authedUser !== ""
@@ -48,6 +48,7 @@ class App extends Component {
                                         : <PrivateRoute component ={Page404}/>
                                     }
                                 </Switch>
+                                <Route path="/logout" component={Logout}/>
                             </div>
                         }
                     </div>
