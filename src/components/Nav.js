@@ -22,6 +22,12 @@ class Nav extends Component {
                         <NavLink to="/leaderboard">
                             Leaderboard
                         </NavLink>
+                        <NavLink to="/answeredquestions">
+                            Answered Questions
+                        </NavLink>
+                        <NavLink to="/unansweredquestions">
+                            Unanswered Questions
+                        </NavLink>
                         <NavLink to="/logout">
                             Logout
                         </NavLink>
@@ -32,6 +38,4 @@ class Nav extends Component {
     }
 }
 
-function mapStateToProps() {}
-
-export default withRouter(connect(mapStateToProps)(Nav))
+export default withRouter(connect()(Nav))

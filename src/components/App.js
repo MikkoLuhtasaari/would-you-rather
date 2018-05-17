@@ -41,8 +41,8 @@ class App extends Component {
                                     : <Nav/>
                                 }
                                 <Switch>
-                                    <PrivateRoute path="/answeredquestions/:id" component={AnsweredQuestions}/>
-                                    <PrivateRoute path="/unansweredquestions/:id" component={UnansweredQuestions}/>
+                                    <PrivateRoute path="/answeredquestions" component={AnsweredQuestions}/>
+                                    <PrivateRoute path="/unansweredquestions" component={UnansweredQuestions}/>
                                     <PrivateRoute path="/add" component={NewQuestion}/>
                                     <PrivateRoute path="/leaderboard" component={Leaderboard} />
                                     {this.props.authedUser === ""
