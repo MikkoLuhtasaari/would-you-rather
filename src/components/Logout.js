@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
-import {Link, withRouter} from "react-router-dom"
+import {withRouter} from "react-router-dom"
 import {setAuthedUser} from "../actions/authedUser";
 
 class Logout extends Component {
@@ -17,7 +17,4 @@ class Logout extends Component {
     }
 }
 
-
-function mapStateToProps({}) {}
-
-export default withRouter(connect(mapStateToProps)(Logout))
+export default withRouter(connect()(Logout))
