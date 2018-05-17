@@ -8,6 +8,8 @@ import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import {handleSaveQuestionAnswer} from "../actions/questions";
+import CardHeader from "@material-ui/core/es/CardHeader/CardHeader";
+import Avatar from "@material-ui/core/es/Avatar/Avatar";
 
 class Question extends Component {
 
@@ -36,11 +38,12 @@ class Question extends Component {
         onClick={(e) => this.navigateToDetails(e, this.props.question.id)} {...itemProps} />;
 
     render() {
-        const {question, isAnswered} = this.props;
+        const {question, isAnswered, users} = this.props;
         return (
             <div>
+                <h2>WOULD YOU RATHER???</h2>
                 <Grid container alignContent="center" spacing={8}>
-                    <Grid item xs={6}>
+                    <Grid item xs={5}>
                         <Card raised={true}>
                             {/* TODO try to fix styling back to intented */}
                             <CardContent component={this.detailsButton}>
@@ -60,7 +63,10 @@ class Question extends Component {
                             </CardActions>
                         </Card>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs ={2}>
+                        <Avatar alt={users[question.author].name} src={users[question.author].avatarURL}/>
+                    </Grid>
+                    <Grid item xs={5}>
                         <Card raised={true}>
                             <CardContent component={this.detailsButton}>
                                 <Typography variant="headline" component="h2">
@@ -85,11 +91,12 @@ class Question extends Component {
     }
 }
 
-function mapStateToProps({questions, authedUser}, {id, isAnswered}) {
+function mapStateToProps({questions, authedUser, users}, {id, isAnswered}) {
     const question = questions[id];
     return {
         question,
         authedUser,
+        users,
         isAnswered
     }
 }
