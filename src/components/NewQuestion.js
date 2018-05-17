@@ -2,6 +2,7 @@ import React, {Component} from "react"
 import {connect} from "react-redux"
 import {Redirect} from "react-router-dom"
 import {handleSaveQuestion} from "../actions/questions"
+import User from "./User"
 
 class NewQuestion extends Component {
 
@@ -51,6 +52,8 @@ class NewQuestion extends Component {
 
         return (
             <div>
+                <h1> Welcome back !</h1>
+                <User id={authedUser}/>
                 <h1>NewQuestion</h1>
                 <form onSubmit={this.handleSubmit}>
                     <textarea
