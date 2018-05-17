@@ -9,6 +9,16 @@ import {withRouter} from "react-router-dom"
 
 class LeaderboardCardItem extends Component {
 
+    calculateAsked = () => {
+        let asked = 0;
+        for(let qkey in this.props.questions) {
+            if(this.props.questions[qkey].author === this.props.user.id) {
+                asked++;
+            }
+        }
+        return asked;
+    };
+
     render(){
         const {user} = this.props;
         return (
@@ -22,7 +32,9 @@ class LeaderboardCardItem extends Component {
                                 </Typography>
                                 <Avatar align="center" alt={user.name} src={user.avatarURL} />
                                 <Typography variant="body1" align="center">
-                                    Asked: {user.questions.length}
+                                    Asked: {this.calculateAsked(() => {
+
+                                })}
                                 </Typography>
                                 <Typography variant="body1" align="center">
                                     Answered: {Object.keys(user.answers).length}
@@ -36,8 +48,9 @@ class LeaderboardCardItem extends Component {
     }
 }
 
-function mapStateToProps({}, {user}) {
+function mapStateToProps({questions}, {user}) {
     return {
+        questions,
         user,
     }
 }
