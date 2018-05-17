@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import {connect} from "react-redux"
 import {Link, withRouter} from "react-router-dom"
 import User from "./User"
-import LeaderBoardCardItem from "./LeaderboardCardItem"
+import LeaderboardCardItem from "./LeaderboardCardItem"
 
 class Leaderboard extends Component {
 
@@ -23,7 +23,7 @@ class Leaderboard extends Component {
                 <User id={authedUser}/>
                 <h1>Leaderboard</h1>
                 {usersWithAnswers.map((user) => (
-                    <LeaderBoardCardItem key={user.user.id} user={user.user}/>
+                    <LeaderboardCardItem key={user.user.id} user={user.user}/>
                     ))}
 
             </div>
