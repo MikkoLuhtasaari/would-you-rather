@@ -11,15 +11,15 @@ class LeaderboardCardItem extends Component {
 
     calculateAsked = () => {
         let asked = 0;
-        for(let qkey in this.props.questions) {
-            if(this.props.questions[qkey].author === this.props.user.id) {
+        for (let qkey in this.props.questions) {
+            if (this.props.questions[qkey].author === this.props.user.id) {
                 asked++;
             }
         }
         return asked;
     };
 
-    render(){
+    render() {
         const {user} = this.props;
         return (
             <div>
@@ -30,7 +30,7 @@ class LeaderboardCardItem extends Component {
                                 <Typography align="center" variant="headline" component="h2">
                                     User: {user.name}
                                 </Typography>
-                                <Avatar align="center" alt={user.name} src={user.avatarURL} />
+                                <Avatar align="center" alt={user.name} src={user.avatarURL}/>
                                 <Typography variant="body1" align="center">
                                     Asked: {this.calculateAsked(() => {
 
@@ -54,5 +54,5 @@ function mapStateToProps({questions}, {user}) {
         user,
     }
 }
-    
+
 export default withRouter(connect(mapStateToProps)(LeaderboardCardItem))
