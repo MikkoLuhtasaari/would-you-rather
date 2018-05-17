@@ -1,14 +1,14 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import {setAuthedUser} from "../actions/authedUser";
-import {Link, withRouter} from "react-router-dom"
+import {withRouter} from "react-router-dom"
 
 class User extends Component {
 
     handleLogin = (e, id) => {
         e.preventDefault();
 
-        const {dispatch, users} = this.props;
+        const {dispatch} = this.props;
         dispatch(setAuthedUser(
             id
         ));

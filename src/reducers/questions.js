@@ -16,10 +16,12 @@ export default function questions(state={}, action) {
                 ...answers
             };
         case(SAVE_QUESTION_ANSWER):
+            //TODO Fix the logic
             return {
-                ...state
-                /* TODO figure out the logic */
-
+                    ...state,
+                    ...action.authedUser,
+                    ...action.qid,
+                    ...action.answer
             };
         default:
             return state

@@ -53,6 +53,7 @@ export function handleSaveQuestionAnswer(qid, answer) {
             authedUser,
             qid,
             answer
-        }).then(() => dispatch(hideLoading()))
+        }).then((newState) => dispatch(saveQuestionAnswer(newState)))
+            .then(() => dispatch(hideLoading()))
     }
 }

@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
-import {Link, withRouter} from "react-router-dom"
+import {withRouter} from "react-router-dom"
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -27,7 +27,7 @@ class Question extends Component {
         onClick={(e) => this.registerVote(e, this.props.question, this.props.authedUser, "optionTwo")} {...itemProps} />;
 
     render() {
-        const {question, authedUser, isAnswered, dispatch} = this.props;
+        const {question, isAnswered} = this.props;
         return (
             <div>
                 <Grid container alignContent="center" spacing={8}>
