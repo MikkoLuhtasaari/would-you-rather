@@ -6,7 +6,6 @@ import {handleInitialData} from "../actions/shared";
 import LoginPage from "./LoginPage"
 import UnansweredQuestions from "./UnansweredQuestions";
 import AnsweredQuestions from "./AnsweredQuestions";
-import Nav from "./Nav"
 import NewQuestion from "./NewQuestion"
 import Page404 from "./Page404"
 import Logout from "./Logout"

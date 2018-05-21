@@ -8,7 +8,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import {handleSaveQuestionAnswer} from "../actions/questions";
-import CardHeader from "@material-ui/core/es/CardHeader/CardHeader";
 import Avatar from "@material-ui/core/es/Avatar/Avatar";
 
 class Question extends Component {
