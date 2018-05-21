@@ -37,9 +37,8 @@ class App extends Component {
                         {this.props.users === null
                             ? null
                             : <div>
-                                <Route path="/" exact component={LoginPage}/>
                                 {this.props.authedUser === ""
-                                    ? null
+                                    ? <Route path="/" exact component={LoginPage}/>
                                     : <MenuNav/>
                                 }
                                 <Switch>
