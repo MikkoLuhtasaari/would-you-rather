@@ -12,12 +12,13 @@ import Avatar from "@material-ui/core/es/Avatar/Avatar";
 import Page404 from "./Page404";
 import Route from "react-router-dom/es/Route";
 import List from '@material-ui/core/List';
+import ListItem from "@material-ui/core/es/ListItem/ListItem";
 
 class QuestionDetails extends Component {
     render() {
         const {question, authedUser, users} = this.props;
         let optionOnePercent = ((question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100) + "%";
-        let optionTwoPercent = ((question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length))* 100) + "%";
+        let optionTwoPercent = ((question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100) + "%";
         return (
             <div>
                 {question === undefined
@@ -33,13 +34,25 @@ class QuestionDetails extends Component {
                             <Grid container alignContent="center" spacing={8}>
                                 <Grid item xs={5}>
                                     <Card>
-                                        <CardHeader title={question.optionOne.text}/>
+                                        <Grid container justify="center">
+                                            <Grid item>
+                                                <CardHeader title={question.optionOne.text}/>
+                                            </Grid>
+                                        </Grid>
                                         <CardContent>
-                                            <List>
-                                                {question.optionOne.votes.map((answer) =>
-                                                    (<Avatar alt={users[answer].name} src={users[answer].avatarURL}/>)
-                                                )}
-                                            </List>
+                                            <Grid container justify="center">
+                                                <List>
+                                                    {question.optionOne.votes.map((answer) =>
+                                                        (<Grid item key={users[answer].name}>
+                                                                <ListItem>
+                                                                    <Avatar alt={users[answer].name}
+                                                                            src={users[answer].avatarURL}/>
+                                                                </ListItem>
+                                                            </Grid>
+                                                        )
+                                                    )}
+                                                </List>
+                                            </Grid>
                                             <Typography align="center" variant="headline" component="h2">
                                                 Votes: {question.optionOne.votes.length}
                                             </Typography>
@@ -50,17 +63,35 @@ class QuestionDetails extends Component {
                                     </Card>
                                 </Grid>
                                 <Grid item xs={2}>
-                                    <Avatar alt={users[question.author].name} src={users[question.author].avatarURL}/>
+                                    <Grid container justify="center">
+                                        <Grid item>
+                                            <Avatar alt={users[question.author].name}
+                                                    src={users[question.author].avatarURL}/>
+                                        </Grid>
+                                    </Grid>
                                 </Grid>
                                 <Grid item xs={5}>
                                     <Card>
-                                        <CardHeader title={question.optionTwo.text}/>
+                                        <Grid container justify="center">
+                                            <Grid item>
+                                                <CardHeader title={question.optionTwo.text}/>
+                                            </Grid>
+                                        </Grid>
                                         <CardContent>
-                                            <List>
-                                                {question.optionTwo.votes.map((answer) =>
-                                                    (<Avatar alt={users[answer].name} src={users[answer].avatarURL}/>)
-                                                )}
-                                            </List>
+                                            <Grid container justify="center">
+                                                <List>
+                                                    {question.optionTwo.votes.map((answer) =>
+                                                        (
+                                                            <Grid item key={users[answer].name}>
+                                                                <ListItem>
+                                                                    <Avatar alt={users[answer].name}
+                                                                            src={users[answer].avatarURL}/>
+                                                                </ListItem>
+                                                            </Grid>
+                                                        )
+                                                    )}
+                                                </List>
+                                            </Grid>
                                             <Typography align="center" variant="headline" component="h2">
                                                 Votes: {question.optionTwo.votes.length}
                                             </Typography>
