@@ -11,13 +11,13 @@ import User from "./User"
 import Avatar from "@material-ui/core/es/Avatar/Avatar";
 import Page404 from "./Page404";
 import Route from "react-router-dom/es/Route";
+import List from '@material-ui/core/List';
 
 class QuestionDetails extends Component {
     render() {
         const {question, authedUser, users} = this.props;
         let optionOnePercent = ((question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100) + "%";
         let optionTwoPercent = ((question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length))* 100) + "%";
-        console.log(question);
         return (
             <div>
                 {question === undefined
@@ -35,6 +35,11 @@ class QuestionDetails extends Component {
                                     <Card>
                                         <CardHeader title={question.optionOne.text}/>
                                         <CardContent>
+                                            <List>
+                                                {question.optionOne.votes.map((answer) =>
+                                                    (<Avatar alt={users[answer].name} src={users[answer].avatarURL}/>)
+                                                )}
+                                            </List>
                                             <Typography align="center" variant="headline" component="h2">
                                                 Votes: {question.optionOne.votes.length}
                                             </Typography>
@@ -51,6 +56,11 @@ class QuestionDetails extends Component {
                                     <Card>
                                         <CardHeader title={question.optionTwo.text}/>
                                         <CardContent>
+                                            <List>
+                                                {question.optionTwo.votes.map((answer) =>
+                                                    (<Avatar alt={users[answer].name} src={users[answer].avatarURL}/>)
+                                                )}
+                                            </List>
                                             <Typography align="center" variant="headline" component="h2">
                                                 Votes: {question.optionTwo.votes.length}
                                             </Typography>
