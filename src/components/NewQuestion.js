@@ -5,7 +5,7 @@ import {handleSaveQuestion} from "../actions/questions"
 import User from "./User"
 
 class NewQuestion extends Component {
-
+    //TODO Create cleaner look for textfields.
     state = {
         optionOne: "",
         optionTwo: "",
@@ -47,7 +47,7 @@ class NewQuestion extends Component {
 
         if(toHome === true) {
             console.log("Redirect");
-            return <Redirect to={"/unansweredquestions/"+authedUser}/>
+            return <Redirect to={"/unansweredquestions"}/>
         }
 
         return (
