@@ -12,7 +12,7 @@ class User extends Component {
         dispatch(setAuthedUser(
             id
         ));
-        this.props.history.push(`/unansweredquestions/${id}`)
+        this.props.history.push(`/unansweredquestions/`)
     };
 
     render() {

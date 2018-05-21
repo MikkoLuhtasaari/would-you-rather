@@ -9,7 +9,7 @@ class UnansweredQuestions extends Component {
 
     navigateToAnswered = (e, authedUser) => {
         e.preventDefault();
-        this.props.history.push(`/answeredquestions/${authedUser}`)
+        this.props.history.push(`/answeredquestions/`)
     };
 
     navigate = itemProps => <Button

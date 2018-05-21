@@ -3,6 +3,11 @@ import {connect} from "react-redux"
 import {withRouter} from "react-router-dom"
 import Button from "@material-ui/core/es/Button/Button";
 import Drawer from "@material-ui/core/es/Drawer/Drawer";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import IconButton from "@material-ui/core/es/IconButton/IconButton";
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 class MenuNav extends Component {
     state = {
@@ -25,16 +30,46 @@ class MenuNav extends Component {
     render() {
         //TODO rest of the buttons, remember close button
         const LOGOUT = "/logout";
+        const ADD_QUESTION = "/add";
+        const LEADERBOARD = "/leaderboard";
+        const ANSWERED = "/answeredquestions";
+        const UNANSWERED = "/unansweredquestions";
         const fullList = (
             <div>
-                <Button size={"large"} onClick={this.navigate(LOGOUT)}>Logout</Button>
+                <List>
+                    <ListItem>
+                        <Button size={"large"} onClick={this.navigate(ANSWERED)}>Answered Questions</Button>
+                    </ListItem>
+                    <Divider/>
+                    <ListItem>
+                        <Button size={"large"} onClick={this.navigate(UNANSWERED)}>Unanswered Questions</Button>
+                    </ListItem>
+                    <Divider/>
+                    <ListItem>
+                        <Button size={"large"} onClick={this.navigate(ADD_QUESTION)}>Add Question</Button>
+                    </ListItem>
+                    <Divider/>
+                    <ListItem>
+                        <Button size={"large"} onClick={this.navigate(LEADERBOARD)}>Leaderboard</Button>
+                    </ListItem>
+                    <Divider/>
+                    <ListItem>
+                        <Button size={"large"} onClick={this.navigate(LOGOUT)}>Logout</Button>
+                    </ListItem>
+                    <Divider/>
+                    <ListItem>
+                        <Button size={"large"} onClick={this.toggleDrawer('left', false)}>Close</Button>
+                    </ListItem>
+                </List>
             </div>
         );
 
 
         return (
             <div>
-                <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
+                <IconButton onClick={this.toggleDrawer('left', true)}>
+                    <MoreVertIcon/>
+                </IconButton>
                 <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
                     <div
                         tabIndex={0}
