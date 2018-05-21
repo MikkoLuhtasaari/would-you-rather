@@ -38,7 +38,16 @@ class Question extends Component {
         onClick={(e) => this.navigateToDetails(e, this.props.question.id)} {...itemProps} />;
 
     render() {
-        const {question, isAnswered, users} = this.props;
+        const {authedUser, question, isAnswered, users} = this.props;
+        let isFirstAnswered = false;
+        if (isAnswered) {
+            for (let i = 0; i < question.optionOne.votes.length; i++) {
+                if (question.optionOne.votes[i].toString().toLowerCase() === authedUser.toString().toLowerCase()) {
+                    console.log("First answered");
+                    isFirstAnswered = true;
+                }
+            }
+        }
         return (
             <div>
                 <h2>WOULD YOU RATHER???</h2>
@@ -56,14 +65,17 @@ class Question extends Component {
                             </CardContent>
                             <CardActions>
                                 {isAnswered ? (
-                                    <Button disabled variant="raised" color="primary" fullWidth={true}>Vote</Button>
+                                    <Button disabled variant="raised" color="primary" fullWidth={true}>
+                                        {isFirstAnswered ? "Your Vote"
+                                            : "Vote"}
+                                    </Button>
                                 ) : (<Button component={this.vote1} variant="raised" color="primary"
                                              fullWidth={true}>Vote</Button>
                                 )}
                             </CardActions>
                         </Card>
                     </Grid>
-                    <Grid item xs ={2}>
+                    <Grid item xs={2}>
                         <Avatar alt={users[question.author].name} src={users[question.author].avatarURL}/>
                     </Grid>
                     <Grid item xs={5}>
@@ -78,7 +90,10 @@ class Question extends Component {
                             </CardContent>
                             <CardActions>
                                 {isAnswered ? (
-                                    <Button disabled variant="raised" color="secondary" fullWidth={true}>Vote</Button>
+                                    <Button disabled variant="raised" color="secondary" fullWidth={true}>
+                                        {!isFirstAnswered ? "Your Vote"
+                                            : "Vote"}
+                                    </Button>
                                 ) : (<Button component={this.vote2} variant="raised" color="secondary"
                                              fullWidth={true}>Vote</Button>
                                 )}
