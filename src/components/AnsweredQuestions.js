@@ -33,7 +33,6 @@ class AnsweredQuestions extends Component {
             }
         }
         answered.sort((a, b) => b.timestamp - a.timestamp);
-        console.log(answered);
         return (
             <div style={{paddingTop: 2 + "em"}} align="center">
                 {user === undefined

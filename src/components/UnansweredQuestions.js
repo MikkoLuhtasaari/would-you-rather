@@ -38,8 +38,6 @@ class UnansweredQuestions extends Component {
             }
         }
         unanswered.sort((a, b) => b.timestamp - a.timestamp);
-        console.log(unanswered);
-
 
         return (
             <div align="center">

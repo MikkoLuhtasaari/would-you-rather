@@ -42,7 +42,6 @@ class Question extends Component {
         if (isAnswered) {
             for (let i = 0; i < question.optionOne.votes.length; i++) {
                 if (question.optionOne.votes[i].toString().toLowerCase() === authedUser.toString().toLowerCase()) {
-                    console.log("First answered");
                     isFirstAnswered = true;
                 }
             }

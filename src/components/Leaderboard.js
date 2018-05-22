@@ -16,7 +16,6 @@ class Leaderboard extends Component {
                     asked++;
                 }
             }
-            console.log(asked);
             usersWithAnswers.push({user: user, answerAmount: asked + answered})
         }
     };
@@ -26,7 +25,6 @@ class Leaderboard extends Component {
         let usersWithAnswers = [];
         this.gatherUserAnswers(usersWithAnswers);
         usersWithAnswers.sort((a, b) => b.answerAmount - a.answerAmount);
-        console.log(usersWithAnswers);
         return (
             <div>
                 <h1> Welcome back !</h1>
