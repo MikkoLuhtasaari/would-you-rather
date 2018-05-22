@@ -30,7 +30,11 @@ class LeaderboardCardItem extends Component {
                                 <Typography align="center" variant="headline" component="h2">
                                     User: {user.name}
                                 </Typography>
-                                <Avatar align="center" alt={user.name} src={user.avatarURL}/>
+                                <Grid container justify="center">
+                                    <Grid item>
+                                        <Avatar align="center" alt={user.name} src={user.avatarURL}/>
+                                    </Grid>
+                                </Grid>
                                 <Typography variant="body1" align="center">
                                     Asked: {this.calculateAsked(() => {
 
