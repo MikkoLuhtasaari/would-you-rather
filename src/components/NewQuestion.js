@@ -65,8 +65,8 @@ class NewQuestion extends Component {
                 </Grid>
                 <form onSubmit={this.handleSubmit}>
                     <Grid container justify="center">
-                        <Grid item={4}/>
-                        <Grid item xs={2}>
+                        <Grid item xs={4}/>
+                        <Grid item>
                             <TextField
                                 placeholder="Answer 1"
                                 value={optionOne}
@@ -75,7 +75,7 @@ class NewQuestion extends Component {
                                 onChange={this.handleChange1}
                             />
                         </Grid>
-                        <Grid item xs={2}>
+                        <Grid item>
                             <TextField
                                 placeholder="Answer 2"
                                 value={optionTwo}
@@ -84,7 +84,8 @@ class NewQuestion extends Component {
                                 onChange={this.handleChange2}
                             />
                         </Grid>
-                        <Grid item={4}/>
+                        <Grid item xs={4}/>
+                        <Grid container justify="center">
                         <Grid item>
                             <Button
                                 size="large"
@@ -93,6 +94,7 @@ class NewQuestion extends Component {
                                 disabled={optionOne === "" || optionTwo === ""}>
                                 Submit</Button>
                         </Grid>
+                    </Grid>
                     </Grid>
                 </form>
             </div>
