@@ -3,9 +3,11 @@ import {connect} from "react-redux"
 import {Redirect} from "react-router-dom"
 import {handleSaveQuestion} from "../actions/questions"
 import User from "./User"
+import TextField from '@material-ui/core/TextField';
+import Button from "@material-ui/core/es/Button/Button";
+import Grid from "@material-ui/core/es/Grid/Grid";
 
 class NewQuestion extends Component {
-    //TODO Create cleaner look for textfields.
     state = {
         optionOne: "",
         optionTwo: "",
@@ -29,7 +31,6 @@ class NewQuestion extends Component {
         e.preventDefault();
 
         const {optionOne, optionTwo} = this.state;
-        console.log(optionOne, optionTwo);
         const {dispatch} = this.props;
 
         dispatch(handleSaveQuestion({optionOneText: optionOne, optionTwoText: optionTwo}));
@@ -41,39 +42,58 @@ class NewQuestion extends Component {
         }))
     };
 
-    render(){
+    render() {
         const {authedUser} = this.props;
         const {optionOne, optionTwo, toHome} = this.state;
 
-        if(toHome === true) {
-            console.log("Redirect");
+        if (toHome === true) {
             return <Redirect to={"/unansweredquestions"}/>
         }
 
         return (
             <div>
-                <h1> Welcome back !</h1>
+                <Grid container justify="center">
+                    <Grid item>
+                        <h1> Welcome back !</h1>
+                    </Grid>
+                </Grid>
                 <User id={authedUser}/>
-                <h1>NewQuestion</h1>
+                <Grid container justify="center">
+                    <Grid>
+                        <h1>NewQuestion</h1>
+                    </Grid>
+                </Grid>
                 <form onSubmit={this.handleSubmit}>
-                    <textarea
-                        placeholder="Answer 1"
-                        value={optionOne}
-                        className="textarea"
-                        maxLength="200"
-                        onChange={this.handleChange1}
-                        />
-                    <textarea
-                        placeholder="Answer 2"
-                        value={optionTwo}
-                        className="textarea"
-                        maxLength="200"
-                        onChange={this.handleChange2}
-                    />
-                    <button
-                        type="submit"
-                        disabled={optionOne === "" && optionTwo === ""}>
-                        Submit</button>
+                    <Grid container justify="center">
+                        <Grid item={4}/>
+                        <Grid item xs={2}>
+                            <TextField
+                                placeholder="Answer 1"
+                                value={optionOne}
+                                className="textarea"
+                                maxLength="200"
+                                onChange={this.handleChange1}
+                            />
+                        </Grid>
+                        <Grid item xs={2}>
+                            <TextField
+                                placeholder="Answer 2"
+                                value={optionTwo}
+                                className="textarea"
+                                maxLength="200"
+                                onChange={this.handleChange2}
+                            />
+                        </Grid>
+                        <Grid item={4}/>
+                        <Grid item>
+                            <Button
+                                size="large"
+                                color="primary"
+                                type="submit"
+                                disabled={optionOne === "" || optionTwo === ""}>
+                                Submit</Button>
+                        </Grid>
+                    </Grid>
                 </form>
             </div>
         )
