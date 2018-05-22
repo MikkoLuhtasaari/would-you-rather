@@ -32,7 +32,7 @@ let users = {
         },
         questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
     }
-};
+}
 
 let questions = {
     "8xf0y6ziyjabvozdd253nd": {
@@ -112,8 +112,8 @@ let questions = {
             votes: ['tylermcginnis'],
             text: 'write Swift'
         }
-    },
-};
+    }
+}
 
 function generateUID() {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
@@ -162,7 +162,7 @@ export function _saveQuestion(question) {
     })
 }
 
-export function _saveQuestionAnswer({authedUser, qid, answer}) {
+export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
     return new Promise((res, rej) => {
         setTimeout(() => {
             users = {

@@ -33,7 +33,6 @@ export function handleSaveQuestion({optionOneText, optionTwoText}) {
         const {authedUser} = getState();
 
         dispatch(showLoading());
-        console.log(optionOneText, optionTwoText);
 
         return _saveQuestion({
             author: authedUser,
