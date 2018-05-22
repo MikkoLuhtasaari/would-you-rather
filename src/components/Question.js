@@ -53,9 +53,8 @@ class Question extends Component {
                 <Grid container alignContent="center" spacing={8}>
                     <Grid item xs={5}>
                         <Card raised={true}>
-                            {/* TODO try to fix styling back to intented */}
-                            <CardContent component={this.detailsButton}>
-                                <Typography variant="headline" component="h2">
+                            <CardContent>
+                                <Typography variant="headline" component={this.detailsButton}>
                                     {question.optionOne.text}
                                 </Typography>
                                 <Typography color="textSecondary">
@@ -79,8 +78,8 @@ class Question extends Component {
                     </Grid>
                     <Grid item xs={5}>
                         <Card raised={true}>
-                            <CardContent component={this.detailsButton}>
-                                <Typography variant="headline" component="h2">
+                            <CardContent>
+                                <Typography variant="headline" component={this.detailsButton}>
                                     {question.optionTwo.text}
                                 </Typography>
                                 <Typography color="textSecondary">
