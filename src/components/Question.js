@@ -12,10 +12,12 @@ import Avatar from "@material-ui/core/es/Avatar/Avatar";
 
 class Question extends Component {
 
-    registerVote = (e, question, authedUser, answer) => {
+    registerVote = (e, question, authedUser, answer, questions) => {
+        console.log(questions);
         const {dispatch} = this.props;
         e.preventDefault();
         dispatch(handleSaveQuestionAnswer({
+            questions,
             qid: question.id,
             answer
         }));
@@ -27,17 +29,17 @@ class Question extends Component {
     };
 
     vote1 = itemProps => <Button
-        onClick={(e) => this.registerVote(e, this.props.question, this.props.authedUser, "optionOne")} {...itemProps} />;
+        onClick={(e) => this.registerVote(e, this.props.question, this.props.authedUser, "optionOne", this.props.questions)} {...itemProps} />;
 
     vote2 = itemProps => <Button
-        onClick={(e) => this.registerVote(e, this.props.question, this.props.authedUser, "optionTwo")} {...itemProps} />;
+        onClick={(e) => this.registerVote(e, this.props.question, this.props.authedUser, "optionTwo", this.props.questions)} {...itemProps} />;
 
 
     detailsButton = itemProps => <Button
         onClick={(e) => this.navigateToDetails(e, this.props.question.id)} {...itemProps} />;
 
     render() {
-        const {authedUser, question, isAnswered, users} = this.props;
+        const {authedUser, question, isAnswered, users, questions} = this.props;
         let isFirstAnswered = false;
         if (isAnswered) {
             for (let i = 0; i < question.optionOne.votes.length; i++) {
@@ -106,6 +108,7 @@ class Question extends Component {
 function mapStateToProps({questions, authedUser, users}, {id, isAnswered}) {
     const question = questions[id];
     return {
+        questions,
         question,
         authedUser,
         users,

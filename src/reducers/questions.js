@@ -1,4 +1,9 @@
-import {RECEIVE_QUESTIONS, SAVE_QUESTION, SAVE_QUESTION_ANSWER} from "../actions/questions";
+import {
+    RECEIVE_QUESTIONS,
+    SAVE_QUESTION,
+    SAVE_QUESTION_ANSWER_USER,
+    SAVE_QUESTION_ANSWER_QUESTION
+} from "../actions/questions";
 
 export default function questions(state = {}, action) {
     switch (action.type) {
@@ -7,6 +12,7 @@ export default function questions(state = {}, action) {
                 ...state,
                 ...action.questions
             };
+
         case(SAVE_QUESTION):
             let answers = {};
             return {
@@ -14,12 +20,13 @@ export default function questions(state = {}, action) {
                 [action.question.id]: action.question,
                 ...answers
             };
-        case(SAVE_QUESTION_ANSWER):
-            //TODO Fix the logic
-            let users = {};
-            let questions = {};
+
+        case(SAVE_QUESTION_ANSWER_USER):
+            console.log("SAVE_QUESTION_ANSWER_USER");
+            let users = state.users;
             return {
                 ...state,
+                ...state.questions,
                 users: {
                     ...users,
                     [action.authedUser]: {
@@ -29,8 +36,16 @@ export default function questions(state = {}, action) {
                             [action.qid]: action.answer
                         }
                     }
-                },
-                questions : {
+                }
+            };
+
+        case(SAVE_QUESTION_ANSWER_QUESTION):
+            console.log("SAVE_QUESTION_ANSWER_QUESTION");
+            let questions = state.questions;
+            return {
+                ...state,
+                ...state.users,
+                questions: {
                     ...questions,
                     [action.qid]: {
                         ...questions[action.qid],
@@ -41,7 +56,9 @@ export default function questions(state = {}, action) {
                     }
                 }
             };
+
         default:
             return state
     }
+
 }
