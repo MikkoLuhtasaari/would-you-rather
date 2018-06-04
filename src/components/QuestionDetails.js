@@ -17,11 +17,14 @@ import ListItem from "@material-ui/core/es/ListItem/ListItem";
 class QuestionDetails extends Component {
     render() {
         const {question, authedUser, users} = this.props;
-        let optionOnePercent = ((question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100) + "%";
-        let optionTwoPercent = ((question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100) + "%";
+        let optionOnePercent, optionTwoPercent;
+        if (question) {
+            optionOnePercent = ((question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100) + "%";
+            optionTwoPercent = ((question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100) + "%";
+        }
         return (
             <div>
-                {question === undefined
+                {typeof question === "undefined"
                     ? <Route component={Page404}/>
                     :
                     <div>
