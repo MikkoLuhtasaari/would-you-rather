@@ -7,19 +7,22 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import {handleSaveQuestionAnswer} from "../actions/questions";
+import {handleQuestionAnswer} from "../actions/shared";
 import Avatar from "@material-ui/core/es/Avatar/Avatar";
 
 class Question extends Component {
 
     registerVote = (e, question, authedUser, answer, questions) => {
-        console.log(questions);
         const {dispatch} = this.props;
         e.preventDefault();
-        dispatch(handleSaveQuestionAnswer({
-            questions,
+        const info = {
+            questions: questions,
             qid: question.id,
-            answer
+            answer: answer,
+            authedUser
+        };
+        dispatch(handleQuestionAnswer({
+            info
         }));
     };
 
@@ -39,7 +42,7 @@ class Question extends Component {
         onClick={(e) => this.navigateToDetails(e, this.props.question.id)} {...itemProps} />;
 
     render() {
-        const {authedUser, question, isAnswered, users, questions} = this.props;
+        const {authedUser, question, isAnswered, users} = this.props;
         let isFirstAnswered = false;
         if (isAnswered) {
             for (let i = 0; i < question.optionOne.votes.length; i++) {

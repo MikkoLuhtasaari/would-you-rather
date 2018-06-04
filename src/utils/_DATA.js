@@ -32,7 +32,7 @@ let users = {
         },
         questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
     }
-}
+};
 
 let questions = {
     "8xf0y6ziyjabvozdd253nd": {
@@ -112,26 +112,26 @@ let questions = {
             votes: ['tylermcginnis'],
             text: 'write Swift'
         }
-    }
-}
+    },
+};
 
-function generateUID () {
+function generateUID() {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
-export function _getUsers () {
+export function _getUsers() {
     return new Promise((res, rej) => {
         setTimeout(() => res({...users}), 1000)
     })
 }
 
-export function _getQuestions () {
+export function _getQuestions() {
     return new Promise((res, rej) => {
         setTimeout(() => res({...questions}), 1000)
     })
 }
 
-function formatQuestion ({ optionOneText, optionTwoText, author }) {
+function formatQuestion({optionOneText, optionTwoText, author}) {
     return {
         id: generateUID(),
         timestamp: Date.now(),
@@ -147,7 +147,7 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
     }
 }
 
-export function _saveQuestion (question) {
+export function _saveQuestion(question) {
     return new Promise((res, rej) => {
         const authedUser = question.author;
         const formattedQuestion = formatQuestion(question);
@@ -156,7 +156,7 @@ export function _saveQuestion (question) {
             questions = {
                 ...questions,
                 [formattedQuestion.id]: formattedQuestion
-            }
+            };
 
             users = {
                 ...users,
@@ -164,14 +164,14 @@ export function _saveQuestion (question) {
                     ...users[authedUser],
                     questions: users[authedUser].questions.concat([formattedQuestion.id])
                 }
-            }
+            };
 
             res(formattedQuestion)
         }, 1000)
     })
 }
 
-export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
+export function _saveQuestionAnswer({authedUser, qid, answer}) {
     return new Promise((res, rej) => {
         setTimeout(() => {
             users = {
@@ -183,7 +183,7 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
                         [qid]: answer
                     }
                 }
-            }
+            };
 
             questions = {
                 ...questions,
@@ -194,7 +194,7 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
                         votes: questions[qid][answer].votes.concat([authedUser])
                     }
                 }
-            }
+            };
 
             res()
         }, 500)
