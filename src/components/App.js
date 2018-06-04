@@ -13,7 +13,6 @@ import Leaderboard from "./Leaderboard";
 import QuestionDetails from "./QuestionDetails";
 import MenuNav from "./MenuNav";
 
-// TODO Question details page, voting
 const PrivateRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={(props) => (
         props && props.authedUser !== ""
