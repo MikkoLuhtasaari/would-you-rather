@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom"
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import {connect} from "react-redux"
 import LoadingBar from "react-redux-loading"
 import {handleInitialData} from "../actions/shared";
@@ -12,21 +12,9 @@ import Leaderboard from "./Leaderboard";
 import QuestionDetails from "./QuestionDetails";
 import MenuNav from "./MenuNav";
 
-// const PrivateRoute = ({component: Component, ...rest}) => (
-//     <Route {...rest} render={(props) => (
-//         props && props.authedUser !== ""
-//             ? <Component {...props} />
-//             : <Redirect to="/"/>
-//     )}/>
-// );
-
-// {this.props.location.pathname === "/"
-//     ? <Route path="/" exact component={LoginPage}/>
-//     : <Redirect to="/" /> }
-
 class App extends Component {
     componentDidMount() {
-        this.props.dispatch(handleInitialData())
+            this.props.dispatch(handleInitialData())
     }
 
     render() {
@@ -34,7 +22,7 @@ class App extends Component {
             <Router>
                 <Fragment>
                     <LoadingBar/>
-                    {this.props.shouldLogIn === true
+                    {this.props.shouldLogIn
                         ? <Route path="/" component={LoginPage}/>
                         : <div><MenuNav/>
                             <Switch>
