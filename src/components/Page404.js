@@ -1,4 +1,6 @@
 import React, {Component} from "react"
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class Page404 extends Component {
     render() {
@@ -11,4 +13,4 @@ class Page404 extends Component {
     }
 }
 
-export default Page404
+export default withRouter(connect()(Page404))

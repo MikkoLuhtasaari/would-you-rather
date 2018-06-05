@@ -18,30 +18,28 @@ class App extends Component {
             <Router>
                 <Fragment>
                     <LoadingBar/>
-                    {this.props.shouldLogIn
-                        ? <Route exact path="/" component={LoginPage}/>
-                        : <div><MenuNav/>
-                            <Switch>
-                                <Route exact path="/answeredquestions" component={AnsweredQuestions}/>
-                                <Route exact path="/unansweredquestions" component={UnansweredQuestions}/>
-                                <Route exact path="/add" component={NewQuestion}/>
-                                <Route exact path="/leaderboard" component={Leaderboard}/>
-                                <Route path="/questions/:id" component={QuestionDetails}/>
-                                <Route exact path="/logout" component={Logout}/>
-                                <Route path="/" component={Page404}/>
-                            </Switch>
-                        </div>
-                    }
+                    <div>
+                        <MenuNav/>
+                        <Switch>
+                            <Route exact path="/" component={LoginPage}/>
+                            <Route exact path="/answeredquestions" component={AnsweredQuestions}/>
+                            <Route exact path="/unansweredquestions" component={UnansweredQuestions}/>
+                            <Route exact path="/add" component={NewQuestion}/>
+                            <Route exact path="/leaderboard" component={Leaderboard}/>
+                            <Route path="/questions/:id" component={QuestionDetails}/>
+                            <Route exact path="/logout" component={Logout}/>
+                            <Route path="/" component={Page404}/>
+                        </Switch>
+                    </div>
                 </Fragment>
             </Router>
         );
     }
 }
 
-function mapStateToProps({users, authedUser}) {
+function mapStateToProps({users}) {
     return {
         loading: users === {},
-        shouldLogIn: authedUser === null
     }
 }
 
