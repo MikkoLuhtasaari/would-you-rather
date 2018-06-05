@@ -7,19 +7,22 @@ import LoginPage from "./LoginPage"
 import UnansweredQuestions from "./UnansweredQuestions";
 import AnsweredQuestions from "./AnsweredQuestions";
 import NewQuestion from "./NewQuestion"
-import Page404 from "./Page404"
 import Logout from "./Logout"
 import Leaderboard from "./Leaderboard";
 import QuestionDetails from "./QuestionDetails";
 import MenuNav from "./MenuNav";
 
-const PrivateRoute = ({component: Component, ...rest}) => (
-    <Route {...rest} render={(props) => (
-        props && props.authedUser !== ""
-            ? <Component {...props} />
-            : <Redirect to="/"/>
-    )}/>
-);
+// const PrivateRoute = ({component: Component, ...rest}) => (
+//     <Route {...rest} render={(props) => (
+//         props && props.authedUser !== ""
+//             ? <Component {...props} />
+//             : <Redirect to="/"/>
+//     )}/>
+// );
+
+// {this.props.location.pathname === "/"
+//     ? <Route path="/" exact component={LoginPage}/>
+//     : <Redirect to="/" /> }
 
 class App extends Component {
     componentDidMount() {
@@ -31,29 +34,19 @@ class App extends Component {
             <Router>
                 <Fragment>
                     <LoadingBar/>
-                    <div>
-                        {this.props.users === null
-                            ? null
-                            : <div>
-                                {this.props.authedUser === ""
-                                    ? <Route path="/" exact component={LoginPage}/>
-                                    : <MenuNav/>
-                                }
-                                <Switch>
-                                    <PrivateRoute path="/answeredquestions" component={AnsweredQuestions}/>
-                                    <PrivateRoute path="/unansweredquestions" component={UnansweredQuestions}/>
-                                    <PrivateRoute path="/add" component={NewQuestion}/>
-                                    <PrivateRoute path="/leaderboard" component={Leaderboard}/>
-                                    <PrivateRoute path="/questions/:id" component={QuestionDetails}/>
-                                    {this.props.authedUser === ""
-                                        ? null
-                                        : <PrivateRoute component={Page404}/>
-                                    }
-                                </Switch>
+                    {this.props.shouldLogIn === true
+                        ? <Route path="/" component={LoginPage}/>
+                        : <div><MenuNav/>
+                            <Switch>
+                                <Route path="/answeredquestions" component={AnsweredQuestions}/>
+                                <Route path="/unansweredquestions" component={UnansweredQuestions}/>
+                                <Route path="/add" component={NewQuestion}/>
+                                <Route path="/leaderboard" component={Leaderboard}/>
+                                <Route path="/questions/:id" component={QuestionDetails}/>
                                 <Route path="/logout" component={Logout}/>
-                            </div>
-                        }
-                    </div>
+                            </Switch>
+                        </div>
+                    }
                 </Fragment>
             </Router>
         );
@@ -63,7 +56,7 @@ class App extends Component {
 function mapStateToProps({users, authedUser}) {
     return {
         loading: users === {},
-        authedUser
+        shouldLogIn: authedUser == null
     }
 }
 

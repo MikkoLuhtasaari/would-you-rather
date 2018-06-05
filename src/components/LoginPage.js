@@ -3,6 +3,12 @@ import {connect} from "react-redux"
 import User from "./User"
 
 class LoginPage extends Component {
+    // If user is trying to access protected url gently redirect back to base url
+    componentWillMount() {
+        if(this.props.location.pathname !== "/") {
+            this.props.history.push("/");
+        }
+    }
     render() {
         return (
             <div align="center">
