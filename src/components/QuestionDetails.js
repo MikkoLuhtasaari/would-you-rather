@@ -15,6 +15,9 @@ import List from '@material-ui/core/List';
 import ListItem from "@material-ui/core/es/ListItem/ListItem";
 
 class QuestionDetails extends Component {
+    componentDidMount() {
+        console.log("QuestionDetails did mount");
+    }
     render() {
         const {question, authedUser, users} = this.props;
         let optionOnePercent, optionTwoPercent;
