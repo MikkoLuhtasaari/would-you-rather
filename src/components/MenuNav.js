@@ -54,7 +54,7 @@ class MenuNav extends Component {
                     </ListItem>
                     <Divider/>
                     <ListItem>
-                        <Button size={"large"} onClick={this.toggleDrawer('left', false)}>Close</Button>
+                        <Button size={"large"} onClick={this.toggleDrawer(false)}>Close</Button>
                     </ListItem>
                 </List>
             </div>
