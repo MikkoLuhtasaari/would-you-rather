@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import {withRouter} from "react-router-dom"
-import User from "./User"
 import LeaderboardCardItem from "./LeaderboardCardItem"
 
 class Leaderboard extends Component {
@@ -21,14 +20,11 @@ class Leaderboard extends Component {
     };
 
     render() {
-        const {authedUser} = this.props;
         let usersWithAnswers = [];
         this.gatherUserAnswers(usersWithAnswers);
         usersWithAnswers.sort((a, b) => b.answerAmount - a.answerAmount);
         return (
             <div>
-                <h1> Welcome back !</h1>
-                <User id={authedUser}/>
                 <h1>Leaderboard</h1>
                 {usersWithAnswers.map((user) => (
                     <LeaderboardCardItem key={user.user.id} user={user.user}/>
@@ -39,9 +35,8 @@ class Leaderboard extends Component {
     }
 }
 
-function mapStateToProps({authedUser, users, questions}) {
+function mapStateToProps({users, questions}) {
     return {
-        authedUser,
         users,
         questions
     }
