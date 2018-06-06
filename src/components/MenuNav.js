@@ -11,12 +11,12 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 class MenuNav extends Component {
     state = {
-        left: false,
+        open: false,
     };
 
     toggleDrawer = (open) => () => {
         this.setState({
-            ["left"]: open,
+            ["open"]: open
         });
     };
 
@@ -60,13 +60,12 @@ class MenuNav extends Component {
             </div>
         );
 
-
         return (
             <div>
                 <IconButton onClick={this.toggleDrawer(true)}>
                     <MoreVertIcon/>
                 </IconButton>
-                <Drawer open={this.state.left} onClose={this.toggleDrawer(false)}>
+                <Drawer open={this.state.open} onClose={this.toggleDrawer(false)}>
                     <div
                         tabIndex={0}
                         role="button"
