@@ -18,8 +18,11 @@ class App extends Component {
             <Router>
                 <Fragment>
                     <LoadingBar/>
+                    {this.props.isLoggedIn
+                        ? <MenuNav/>
+                        : null
+                    }
                     <div>
-                        <MenuNav/>
                         <Switch>
                             <Route exact path="/" component={LoginPage}/>
                             <Route exact path="/answeredquestions" component={AnsweredQuestions}/>
@@ -37,9 +40,10 @@ class App extends Component {
     }
 }
 
-function mapStateToProps({users}) {
+function mapStateToProps({users, authedUser}) {
     return {
         loading: users === {},
+        isLoggedIn: authedUser !== null
     }
 }
 
