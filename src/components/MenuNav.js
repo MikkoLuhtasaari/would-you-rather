@@ -16,7 +16,7 @@ class MenuNav extends Component {
 
     toggleDrawer = (open) => () => {
         this.setState({
-            ["open"]: open
+            "open": open
         });
     };
 
