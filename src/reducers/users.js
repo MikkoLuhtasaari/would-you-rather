@@ -9,8 +9,8 @@ export default function users(state = {}, action) {
             };
 
         case(SAVE_USER_ANSWER): {
-            let user = {...state[action.authedUser]};
-            let answer = action.answer;
+            const user = {...state[action.authedUser]};
+            const answer = action.answer;
 
             return {
                 ...state,
