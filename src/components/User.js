@@ -12,7 +12,7 @@ class User extends Component {
         dispatch(setAuthedUser(
             id
         ));
-        this.props.history.push(`/unansweredquestions/`)
+        this.props.history.push("/unansweredquestions/")
     };
 
     render() {
@@ -32,13 +32,10 @@ class User extends Component {
     }
 }
 
-function mapStateToProps({users, questions}, {id}) {
-    const user = users[id];
-    return {
-        user,
-        users,
-        questions
-    }
-}
+const mapStateToProps = ({users, questions}, {id}) => ({
+    user: users[id],
+    users,
+    questions
+})
 
 export default withRouter(connect(mapStateToProps)(User))
