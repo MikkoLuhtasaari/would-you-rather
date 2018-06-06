@@ -11,15 +11,12 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 class MenuNav extends Component {
     state = {
-        top: false,
         left: false,
-        bottom: false,
-        right: false,
     };
 
-    toggleDrawer = (side, open) => () => {
+    toggleDrawer = (open) => () => {
         this.setState({
-            [side]: open,
+            ["left"]: open,
         });
     };
 
@@ -28,7 +25,6 @@ class MenuNav extends Component {
     };
 
     render() {
-        //TODO rest of the buttons, remember close button
         const LOGOUT = "/logout";
         const ADD_QUESTION = "/add";
         const LEADERBOARD = "/leaderboard";
@@ -67,15 +63,15 @@ class MenuNav extends Component {
 
         return (
             <div>
-                <IconButton onClick={this.toggleDrawer('left', true)}>
+                <IconButton onClick={this.toggleDrawer(true)}>
                     <MoreVertIcon/>
                 </IconButton>
-                <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
+                <Drawer open={this.state.left} onClose={this.toggleDrawer(false)}>
                     <div
                         tabIndex={0}
                         role="button"
-                        onClick={this.toggleDrawer('left', false)}
-                        onKeyDown={this.toggleDrawer('left', false)}
+                        onClick={this.toggleDrawer(false)}
+                        onKeyDown={this.toggleDrawer(false)}
                     >
                         {fullList}
                     </div>
