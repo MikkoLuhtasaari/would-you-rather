@@ -19,7 +19,7 @@ export default function questions(state = {}, action) {
             };
 
         case(SAVE_QUESTION_ANSWER):
-            let question = {...state[action.qid]};
+            const question = {...state[action.qid]};
 
             return {
                 ...state,
