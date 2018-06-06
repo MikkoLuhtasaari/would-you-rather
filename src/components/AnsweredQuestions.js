@@ -12,13 +12,7 @@ class AnsweredQuestions extends Component {
         this.props.history.push(`/unansweredquestions/`)
     };
 
-    navigate = itemProps => <Button
-        onClick={(e) => this.navigateToUnanswered(e, this.props.authedUser)} {...itemProps} />;
-
-    render() {
-        const {questions, authedUser, users} = this.props;
-        const user = users[authedUser];
-
+    sortQuestions = (questions, authedUser) => {
         let answered = [];
         for (let key in questions) {
             for (let i = 0; i < questions[key].optionOne["votes"].length; i++) {
@@ -32,7 +26,17 @@ class AnsweredQuestions extends Component {
                 }
             }
         }
-        answered.sort((a, b) => b.timestamp - a.timestamp);
+        return answered.sort((a, b) => b.timestamp - a.timestamp);
+    };
+
+    navigate = itemProps => <Button
+        onClick={(e) => this.navigateToUnanswered(e, this.props.authedUser)} {...itemProps} />;
+
+    render() {
+        const {questions, authedUser, users} = this.props;
+        const user = users[authedUser];
+        let answered = this.sortQuestions(questions, authedUser);
+
         return (
             <div style={{paddingTop: 2 + "em"}} align="center">
                 {user === undefined
