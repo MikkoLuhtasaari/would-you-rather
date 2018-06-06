@@ -17,8 +17,8 @@ class User extends Component {
 
     render() {
         const {user} = this.props;
-
         const {name, avatarURL, id} = user;
+
         return (
             <div align="center">
                 <img src={avatarURL}

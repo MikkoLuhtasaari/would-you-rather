@@ -1,12 +1,9 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import User from "./User"
-import {handleInitialData} from "../actions/shared";
 
 class LoginPage extends Component {
-    componentDidMount() {
-        this.props.dispatch(handleInitialData())
-    }
+
     render() {
         return (
             <div align="center">
@@ -16,7 +13,7 @@ class LoginPage extends Component {
                         <li className="no-bullets"
                             key={id}>
                             <div>
-                                <User id={id} />
+                                <User id={id}/>
                             </div>
                         </li>
                     ))}
