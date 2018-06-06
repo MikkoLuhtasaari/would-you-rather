@@ -31,6 +31,18 @@ class Question extends Component {
         this.props.history.push(`/questions/${qid}`)
     };
 
+    isFirstAnswered = (isAnswered, question, authedUser) => {
+        let isFirstAnswered = false;
+        if (isAnswered) {
+            for (let i = 0; i < question.optionOne.votes.length; i++) {
+                if (question.optionOne.votes[i].toString().toLowerCase() === authedUser.toString().toLowerCase()) {
+                    isFirstAnswered = true;
+                }
+            }
+        }
+        return isFirstAnswered;
+    };
+
     vote1 = itemProps => <Button
         onClick={(e) => this.registerVote(e, this.props.question, this.props.authedUser, "optionOne", this.props.questions)} {...itemProps} />;
 
@@ -43,14 +55,7 @@ class Question extends Component {
 
     render() {
         const {authedUser, question, isAnswered, users} = this.props;
-        let isFirstAnswered = false;
-        if (isAnswered) {
-            for (let i = 0; i < question.optionOne.votes.length; i++) {
-                if (question.optionOne.votes[i].toString().toLowerCase() === authedUser.toString().toLowerCase()) {
-                    isFirstAnswered = true;
-                }
-            }
-        }
+        const isFirstAnswered = this.isFirstAnswered(isAnswered, question, authedUser);
         return (
             <div>
                 <h2>WOULD YOU RATHER???</h2>
