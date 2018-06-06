@@ -12,13 +12,7 @@ class UnansweredQuestions extends Component {
         this.props.history.push(`/answeredquestions/`)
     };
 
-    navigate = itemProps => <Button
-        onClick={(e) => this.navigateToAnswered(e, this.props.authedUser)} {...itemProps} />;
-
-    render() {
-        const {users, authedUser, questions} = this.props;
-        const user = users[authedUser];
-
+    sortQuestions = (questions, authedUser) => {
         let unanswered = [];
         for (let key in questions) {
             let isAnswered = false;
@@ -37,7 +31,17 @@ class UnansweredQuestions extends Component {
                 unanswered = unanswered.concat(questions[key]);
             }
         }
-        unanswered.sort((a, b) => b.timestamp - a.timestamp);
+
+        return unanswered.sort((a, b) => b.timestamp - a.timestamp);
+    };
+
+    navigate = itemProps => <Button
+        onClick={(e) => this.navigateToAnswered(e, this.props.authedUser)} {...itemProps} />;
+
+    render() {
+        const {users, authedUser, questions} = this.props;
+        const user = users[authedUser];
+        const unanswered = this.sortQuestions(questions, authedUser);
 
         return (
             <div align="center">
